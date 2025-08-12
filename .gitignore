@@ -1,0 +1,25 @@
+# Node.js (frontend)
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/out/
+
+# Python (backend)
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE/editor files (optional, add yours)
+.vscode/
+.idea/
