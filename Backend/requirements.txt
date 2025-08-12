@@ -1,0 +1,10 @@
+langchain
+langchain_community
+langchain-google-genai
+python-dotenv
+langchain_experimental
+sentence-transformers
+langchain_chroma
+langchainhub
+pypdf
+rapidocr-onnxruntime

@@ -1,7 +1,14 @@
-from fastapi import FastAPI
+#imprt statments
+from google import genai
+from dotenv import load_dotenv
 
-app = FastAPI()
 
-@app.get("/")
-async def root():
-    return {"message": "Backend is running!"}
+#load function
+load_dotenv()
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="who are u"
+)
+print(response.text)
