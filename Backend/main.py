@@ -1,4 +1,5 @@
 #import modules
+from aiohttp import request
 from fastapi import FastAPI
 from google import genai
 from dotenv import load_dotenv
@@ -6,32 +7,28 @@ from pydantic import BaseModel
 import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import RetrievalQA
+from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
+from langchain_community.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Chroma
 
 
-#Run modules
-load_dotenv()  
+# Run modules
+load_dotenv()
 app = FastAPI()
-client = genai.Client()
 
-
-
-
-
-
-
-
-#define the documents path
+# Load the local embedding model
+embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")# Define the documents path
 all_documents_path = "./documents"
 all_documents = []
 
-
-
-
-#add all the PDF documents to a big list
+# Add all the PDF documents to a big list
 for filename in os.listdir(all_documents_path):
     if filename.endswith(".pdf"):
         loader = PyPDFLoader(os.path.join(all_documents_path, filename))
@@ -41,23 +38,21 @@ for filename in os.listdir(all_documents_path):
             doc.metadata["source_page"] = i + 1
         all_documents.extend(docs)
 
-
-        # Create a splitter instance
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 # Split the loaded documents into chunks
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 docs_chunks = text_splitter.split_documents(all_documents)
 
+# Create a Chroma vector store using SentenceTransformer embeddings
+vectordb = Chroma.from_documents(
+    docs_chunks,
+     embedding=embedding_model,        # pass embedding function, not precomputed
+    persist_directory="./chroma_db"
+)
 
+# Persist the database to disk
+vectordb.persist()
 
-
-# Create embeddings
-embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
-
-
-
-
-# Create vectorstore
-vectordb = Chroma.from_documents(docs_chunks, embeddings)
+print(f"Loaded {len(all_documents)} documents, split into {len(docs_chunks)} chunks, and saved embeddings.")
 
 
 # Create retrieval chain
@@ -72,11 +67,9 @@ class PromptRequest(BaseModel):
     prompt: str
 #load all
 print(f"Loaded {len(all_documents)} documents and split into {len(docs_chunks)} chunks.")
-
-
 @app.post("/chat")
 def chat_with_docs(request: PromptRequest):
-    result = retrieval_chain({"query": request.prompt})  # use invoke-style call
+    result = retrieval_chain.invoke({"query": request.prompt})
     answer = result["result"]  # the answer text
     sources = result["source_documents"]  # the chunks used
     return {
