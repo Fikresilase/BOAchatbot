@@ -17,6 +17,7 @@ import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
+from fastapi.concurrency import run_in_threadpool
 
 
 # Run modules
@@ -65,19 +66,35 @@ retrieval_chain = RetrievalQA.from_chain_type(
 # Define the request body for the POST request
 class PromptRequest(BaseModel):
     prompt: str
+
+# define my system prompt
+system_prompt = "You are Mela, a helpful customer support assistant for Bank of Abyssinia trained by BoA AI center of excellence."
+
+# combine the user and system prompts together
+chat_prompt = f"{system_prompt}\nUser: {{query}}\nMela:"
+
 #load all
 print(f"Loaded {len(all_documents)} documents and split into {len(docs_chunks)} chunks.")
 @app.post("/chat")
-def chat_with_docs(request: PromptRequest):
-    result = retrieval_chain.invoke({"query": request.prompt})
-    answer = result["result"]  # the answer text
-    sources = result["source_documents"]  # the chunks used
+async def chat_with_docs(request: PromptRequest):
+    # Combine system and user prompts
+    chat_prompt = f"{system_prompt}\nUser: {request.prompt}\nMela:"
+
+    # Call the retrieval chain with the combined prompt
+    result = await run_in_threadpool(lambda: retrieval_chain.invoke({"query": chat_prompt}))
+    
+    answer = result["result"]
+    sources = result["source_documents"]
+    
     return {
         "answer": answer,
-        "sources": [{
-            "text": doc.page_content,
-            "file": doc.metadata.get("source_file"),
-            "page": doc.metadata.get("source_page")
-        }
-        for doc in sources]  # you can include text of source chunks
+        "sources": [
+            {
+                "text": doc.page_content,
+                "file": doc.metadata.get("source_file"),
+                "page": doc.metadata.get("source_page")
+            }
+            for doc in sources
+        ]
     }
+

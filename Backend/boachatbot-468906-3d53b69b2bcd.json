@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "boachatbot-468906",
+  "private_key_id": "3d53b69b2bcdf5bfc4335ec81976f57ccc249cdf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDwn9pz3NROuf7Q\nhRQzFufe1k7Vy48cd3IIUqo9kzV0pjnv9mCbnt9iERya6rZy+BZznTDeMEBvFVNU\nGnMMuP0A+f9LWLBjvVKHWRmzDtNBgbHoKtBNH3d6y1uaRa0gGeKDRJxbliwWyjaQ\nS/ub/e0lFU764HizyFKN4MyWfNPC8iEYxZipsloI3KAqpvG5yBx4WeQtOoNZt6Rc\nIMIifvWX1soe+F3FJXIab564BJeLO+/pP8oi04xvLCVnnvirTo15T0pM+hSA1VRh\nVXb3zAXV7Yye6zhHkQwAj2xuWM0o7Y9S1oNMIVhDi2ReLHWWIIuxtThUTNhk/W4H\n1i7qzQynAgMBAAECggEAB213ydHMP+3f3sHs4LLZT3igEFtrPH63Z2hd1u6/XK1w\n5mZdjxA1ZwqOLn4GScA8uS7l/kXRB1zKKLN0T7U6IhiVd9byAvIqJQFsGKnhfYkq\nW7dOnMLW5lR2rGlwMah65IBurykQjVeKnaOqzaLl+hoRSQ86ypnpanXA+vg5dTAC\n4H0SpJbCW34NY3QdbhuZoRRFBsyAjm4sfhT5Vf/Z5FXlLjEcKmWl0rznGwXMObrg\nVQN1x0roH9E4oJXqJCRKcaj8gZYNZP2pRCULDjxSMFpjhxugV4WEmHFFkcIYn/to\ngBPMBelWqo8hbLtPeQHf/ZUgP6Ze2b7azOMLt4HQUQKBgQD74XNq156SpVwJd9Z4\nXa+kRc+1eu3DvRTVH9iEEouYecCQvtl9SYbUKDS8UHil26jkjZH4qt1v4HVMykJu\nbsnWDQcNL375huXO7Pa8cbjw5oVrF6JnZjMHrRorA4M9zSTp5U3Mmsv5esLKUwBK\nMcz7ybFTfv4I6KyKmYLDzKc6qQKBgQD0j0alkyI2NcSO6k3EoCw+aDUhhvRgFEFA\n1x0qElTRIqta5hhAVvH7afncNpYJSG1z5eRipY6r97PhHh2OJvN+3RsKjSYyQUzA\nk1WXj+W5nHJla404P6krbu9epTayp5Ry4AT3xgqCWzi48CAfNBGh8b6RmFyKYKPV\nKgLcDWBuzwKBgHlyD8NRKV0Nq93I0TkB+wEaw/Z9ygxZq6TDERNFGdevxKBF1Pmq\nrP64UA0IQ9O8oKdqdxpN0Cz0LbqTvwoeEuVJLMA3yWIon79w09qyfnhwvZ2QLLbs\nOOiXlwlsTShMNGMuM5/Wd0jX3vnMoVQkxPAWJJDcp0HGZgMB12Hu2CbZAoGADFgf\nDMR8eZgFL+GLw10CXrQL2oFhXGgpUwiIpFMAjP3fAFuU5cp9tF8JCaCHujg5rhvw\nhzosFWoPXlGS1FYK/GBUuRee0fKR2TaWn2vYAKJw88WV/zzXYSXcVz6noCTtTU8Z\ncRhB94p7NnqIZIrQSQhWwiqaoTF3k47nTgwuzekCgYBqj+1kkoBiTDC29jC8e64x\nM33oogHC/TETjpTOW42rBBAn3njDfSg2g1v4vioJ/Jp4d5ORfOZ7AFvyBEEKqbh9\nTTs6AWF8JbuiQ9CGoBj4YdFhFo4lIoKzI6OSPS1w0U10GhJoHAhS1clPEdZ3mwb4\nebttNGecizblFVyTbuLQxA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "boachatbot-service@boachatbot-468906.iam.gserviceaccount.com",
+  "client_id": "101498054667378135721",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/boachatbot-service%40boachatbot-468906.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
