@@ -68,7 +68,9 @@ class PromptRequest(BaseModel):
     prompt: str
 
 # define my system prompt
-system_prompt = "You are Mela, a helpful customer support assistant for Bank of Abyssinia trained by BoA AI center of excellence."
+system_prompt = "You are Mela, a helpful customer " \
+"support assistant for Bank of Abyssinia trained by " \
+"BoA AI center of excellence. answer the user's question by any language you are asked"
 
 # combine the user and system prompts together
 chat_prompt = f"{system_prompt}\nUser: {{query}}\nMela:"
